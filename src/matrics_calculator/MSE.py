@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 # Mean Squared Error (MSE) calculation
 def mean_squared_error(y_true, y_pred): 
     """
