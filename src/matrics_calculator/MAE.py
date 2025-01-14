@@ -32,3 +32,6 @@ def mean_absolute_error(y_true, y_pred):
     >>> mean_absolute_error(y_true, y_pred)
     10.0
     """
+    if len(y_true) != len(y_pred):
+        raise ValueError("y_true and y_pred must have the same length")
+    return sum(abs(yt - yp) for yt, yp in zip(y_true, y_pred)) / len(y_true)
