@@ -35,12 +35,12 @@ def r2(predictor, response):
     from sklearn.linear_model import LinearRegression
     import numpy as np
     
-    if len(predictor) == 0 or len(response) == 0:
-        print('Input cannot be empty')
-        return None
-    
     if not isinstance(predictor, list) or not isinstance(predictor, list):
         print('Input must be lists')
+        return None
+
+    if len(predictor) == 0 or len(response) == 0:
+        print('Input cannot be empty')
         return None
        
     if isinstance(predictor,list):
