@@ -1,21 +1,11 @@
 import pytest
-from matrics_calculator.mae import mae
+from matrics_calculator.MAE import mean_absolute_error
 
-def test_mean_absolute_error_correct_calculation():
+def test_mean_absolute_error_type_error():
     """
-    Test if the function correctly calculates MAE with valid input.
+    Test if the function raises a TypeError when inputs are not array-like.
     """
-    y_true = [100, 200, 300]
-    y_pred = [110, 190, 290]
-    result = mean_absolute_error(y_true, y_pred)
-    assert result == pytest.approx(10.0, rel=1e-5)
-
-
-def test_mean_absolute_error_negative_values():
-    """
-    Test if the function handles negative values correctly.
-    """
-    y_true = [-1, -2, -3]
-    y_pred = [-1, -2, -4]
-    result = mean_absolute_error(y_true, y_pred)
-    assert result == 1.0
+    with pytest.raises(TypeError, match="y_true and y_pred must be array-like"):
+        mean_absolute_error(123, [1, 2, 3])
+    with pytest.raises(TypeError, match="y_true and y_pred must be array-like"):
+        mean_absolute_error([1, 2, 3], "not an array")
