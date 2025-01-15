@@ -1,4 +1,6 @@
 # Mean Absolute Percentage Error (MAPE) calculation
+import numpy as np
+
 def mean_absolute_percentage_error(y_true, y_pred):
     """
     Calculate the Mean Absolute Percentage Error (MAPE) metric for regression.
@@ -33,3 +35,18 @@ def mean_absolute_percentage_error(y_true, y_pred):
     >>> mean_absolute_percentage_error(y_true, y_pred)
     3.3333
     """
+    #convert inputs into numpy arrays
+    y_true = np.array(y_true)
+    y_pred = np.array(y_pred)
+
+    # Validate input lengths
+    if len(y_true) != len(y_pred):
+        raise ValueError("y_true and y_pred must have the same length.")
+
+    # Check for zeros in y_true to prevent division by zero
+    if np.any(y_true == 0):
+        raise ValueError("y_true contains zero values, which would result in division by zero.")
+
+    # Calculate MAPE
+    mape = np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+    return mape
