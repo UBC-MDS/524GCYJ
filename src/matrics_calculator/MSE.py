@@ -31,5 +31,9 @@ def mean_squared_error(y_true, y_pred):
     >>> mean_squared_error(y_true, y_pred)
     0.375
     """
-    pass
+    if len(y_true) != len(y_pred):
+        raise ValueError("The lengths of y_true and y_pred must be the same.")
+    
+    mse = sum((true - pred) ** 2 for true, pred in zip(y_true, y_pred)) / len(y_true)
+    return mse
 
