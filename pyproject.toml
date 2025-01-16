@@ -12,6 +12,7 @@ scikit-learn = "^1.6.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^6.2.5"
+pytest-cov = "^6.0.0"
 
 [tool.semantic_release]
 version_toml = [
