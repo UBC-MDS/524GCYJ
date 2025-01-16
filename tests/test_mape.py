@@ -10,7 +10,7 @@ def test_mape_standard_case():
     y_true = [100, 200, 300]
     y_pred = [110, 190, 290]
     result = mean_absolute_percentage_error(y_true, y_pred)
-    assert pytest.approx(result, 0.01) == 3.3333
+    assert pytest.approx(result, 0.01) == 6.1111
 
 
 # Test case: Very small positive values in y_true and y_pred
@@ -23,7 +23,7 @@ def test_mape_edge_case_small_values():
     y_true = [0.1, 0.2, 0.3]
     y_pred = [0.09, 0.21, 0.31]
     result = mean_absolute_percentage_error(y_true, y_pred)
-    assert pytest.approx(result, 0.01) == 11.1111
+    assert pytest.approx(result, 0.01) == 6.1111
 
 
 # Test case: Mismatched lengths of y_true and y_pred
@@ -59,4 +59,4 @@ def test_mape_extreme_predictions():
     y_true = [100, 200, 300]
     y_pred = [200, 100, 600]
     result = mean_absolute_percentage_error(y_true, y_pred)
-    assert pytest.approx(result, 0.01) == 66.6667
+    assert pytest.approx(result, 0.01) == 83.3333
