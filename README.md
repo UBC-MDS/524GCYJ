@@ -27,7 +27,44 @@ $ pip install matrics_calculator
 
 ## Usage
 
-- TODO
+Here’s how to use the functions in this package:
+1. Import the Package
+```bash
+from matrics_calculator.r2 import r2_score
+from matrics_calculator.MAE import mean_absolute_error
+from matrics_calculator.MSE import mean_squared_error
+from matrics_calculator.MAPE import mean_absolute_percentage_error
+```
+
+2. Prepare Your Data Ensure you have two arrays:
+
+    `y_true`: The actual target values.
+
+    `y_pred`: The predicted values from your regression model.
+
+    Example:
+```bash
+y_true = [100, 200, 300]
+y_pred = [110, 190, 290]
+```
+3. Calculate Metrics Use the functions to evaluate your model:
+```bash
+# Calculate MAPE
+mape = mean_absolute_percentage_error(y_true, y_pred)
+print(f"MAPE: {mape:.2f}%")
+
+# Calculate MAE
+mae = mean_absolute_error(y_true, y_pred)
+print(f"MAE: {mae:.2f}")
+
+# Calculate MSE
+mse = mean_squared_error(y_true, y_pred)
+print(f"MSE: {mse:.2f}")
+
+# Calculate R-squared
+r2 = r2_score(y_true, y_pred)
+print(f"R-squared: {r2:.2f}")
+```
 
 ## Contributing
 
