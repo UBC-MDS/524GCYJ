@@ -1,3 +1,4 @@
+[![Documentation Status](https://readthedocs.org/projects/matrics-calculator/badge/?version=latest)](https://matrics-calculator.readthedocs.io/en/latest/?badge=latest)
 # matrics_calculator
 
 A package providing functions to calculate key regression metrics: R-squared, Mean Absolute Error (MAE), Mean Squared Error (MSE), and Mean Absolute Percentage Error (MAPE).
