@@ -71,6 +71,33 @@ jobs:
       - name: Verify changes after semantic release
         run: git status
 
+      - name: Publish to TestPyPI
+          uses: pypa/gh-action-pypi-publish@release/v1
+          if: steps.release.outputs.released == 'true'
+          with:
+            repository-url: https://test.pypi.org/legacy/
+            password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+      - name: Test install from TestPyPI
+        if: steps.release.outputs.released == 'true'
+        run: |
+          pip install \
+          --index-url https://test.pypi.org/simple/ \
+          --extra-index-url https://pypi.org/simple \
+          matrics_calculator
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        if: steps.release.outputs.released == 'true'
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Publish package distributions to GitHub Releases
+        uses: python-semantic-release/upload-to-gh-release@main
+        if: steps.release.outputs.released == 'true'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       # Create a release branch instead of pushing directly to main
       - name: Create and push release branch
         if: steps.release.outputs.released == 'true'
@@ -98,3 +125,4 @@ jobs:
             --head release-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       
