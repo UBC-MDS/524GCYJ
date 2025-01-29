@@ -67,21 +67,9 @@ jobs:
         uses: python-semantic-release/python-semantic-release@v8.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create and push release branch
-        if: steps.release.outputs.released == 'true'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b release-branch
-          git commit -am "chore: bump version [skip ci]"
-          git push origin release-branch
-
-      - name: Create pull request for version update
-        if: steps.release.outputs.released == 'true'
-        run: gh pr create --title "Release: New Version" --body "Automated version bump" --base main --head release-branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Verify changes after semantic release
+        run: git status
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -93,10 +81,10 @@ jobs:
       - name: Test install from TestPyPI
         if: steps.release.outputs.released == 'true'
         run: |
-            pip install \
-            --index-url https://test.pypi.org/simple/ \
-            --extra-index-url https://pypi.org/simple \
-            matrics_calculator
+          pip install \
+          --index-url https://test.pypi.org/simple/ \
+          --extra-index-url https://pypi.org/simple \
+          matrics_calculator
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -109,3 +97,32 @@ jobs:
         if: steps.release.outputs.released == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Create a release branch instead of pushing directly to main
+      - name: Create and push release branch
+        if: steps.release.outputs.released == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b release-branch
+          git commit -am "chore: bump version [skip ci]" || echo "No changes to commit"
+          git push origin release-branch || echo "No changes to push"
+
+      # Install GitHub CLI and authenticate before creating PR
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Create pull request for version update
+        if: steps.release.outputs.released == 'true'
+        run: |
+          gh pr create \
+            --title "Release: New Version" \
+            --body "Automated version bump" \
+            --base main \
+            --head release-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       
