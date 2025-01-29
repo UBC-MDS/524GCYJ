@@ -77,35 +77,30 @@ jobs:
           git commit -am "chore: bump version [skip ci]"
           git push origin release-branch
 
-      - name: Create pull request for version update
-        if: steps.release.outputs.released == 'true'
-        run: gh pr create --title "Release: New Version" --body "Automated version bump" --base main --head release-branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        if: steps.release.outputs.released == 'true'
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-
-      - name: Test install from TestPyPI
+      # Create a release branch instead of pushing directly to main
+      - name: Create and push release branch
         if: steps.release.outputs.released == 'true'
         run: |
-            pip install \
-            --index-url https://test.pypi.org/simple/ \
-            --extra-index-url https://pypi.org/simple \
-            matrics_calculator
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b release-branch
+          git commit -am "chore: bump version [skip ci]"
+          git push origin release-branch
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        if: steps.release.outputs.released == 'true'
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      # Install GitHub CLI and authenticate before creating PR
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
 
-      - name: Publish package distributions to GitHub Releases
-        uses: python-semantic-release/upload-to-gh-release@main
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Create pull request for version update
         if: steps.release.outputs.released == 'true'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --title "Release: New Version" \
+            --body "Automated version bump" \
+            --base main \
+            --head release-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
