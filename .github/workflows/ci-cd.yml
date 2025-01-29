@@ -67,15 +67,9 @@ jobs:
         uses: python-semantic-release/python-semantic-release@v8.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create and push release branch
-        if: steps.release.outputs.released == 'true'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b release-branch
-          git commit -am "chore: bump version [skip ci]"
-          git push origin release-branch
+        
+      - name: Verify changes after semantic release
+        run: git status
 
       # Create a release branch instead of pushing directly to main
       - name: Create and push release branch
@@ -85,7 +79,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b release-branch
           git commit -am "chore: bump version [skip ci]"
-          git push origin release-branch
+          git push origin release-branch || echo "No changes to push"
 
       # Install GitHub CLI and authenticate before creating PR
       - name: Install GitHub CLI
