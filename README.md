@@ -38,9 +38,9 @@ from matrics_calculator.MAPE import mean_absolute_percentage_error
 
 2. Prepare Your Data Ensure you have two arrays:
 
-    `y_true`: The actual target values
+    `y_true`: The actual target values.
 
-    `y_pred`: The predicted values from your regression model
+    `y_pred`: The predicted values from your regression model.
 
     Example:
 ```bash
