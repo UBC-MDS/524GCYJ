@@ -3,6 +3,10 @@
 
 A package providing functions to calculate key regression metrics: R-squared, Mean Absolute Error (MAE), Mean Squared Error (MSE), and Mean Absolute Percentage Error (MAPE).
 
+## Python Ecosystem
+
+matrics_calculator provides a lightweight and easy-to-use alternative for calculating key regression metrics, complementing existing libraries like scikit-learn. While scikit-learn offers a full suite of machine learning tools, matrics_calculator focuses solely on evaluation metrics, making it a useful option for quick analysis, custom workflows, or educational purposes. Its simplicity makes it accessible for users who need essential regression metrics without the overhead of a larger machine learning framework.
+
 ## Features
 
 This package consists of four functions:

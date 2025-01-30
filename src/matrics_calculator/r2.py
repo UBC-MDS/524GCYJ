@@ -1,17 +1,17 @@
 # r-squared value calculation
-def r2(predictor, response): 
+def r2(y_pred, y_true): 
     """
     Calculates r-squared using linear regression.
 
-    Computes the r-squared value (coefficient of determination) using the provided predictor 
-    list and response list.
+    Computes the r-squared value (coefficient of determination) using the provided y_pred 
+    list and y_true list.
     
     Parameters
     ----------
-    predictor : list
-        Predictor values to be used in calculating r-sqaured value.
-    response : list
-        Response values to be used in calculating r-sqaured value.
+    y_pred : list
+        y_pred values to be used in calculating r-sqaured value.
+    y_true : list
+        y_true values to be used in calculating r-sqaured value.
 
     Returns
     -------
@@ -35,23 +35,23 @@ def r2(predictor, response):
     from sklearn.linear_model import LinearRegression
     import numpy as np
     
-    if not isinstance(predictor, list) or not isinstance(predictor, list):
+    if not isinstance(y_pred, list) or not isinstance(y_pred, list):
         print('Input must be lists')
         return None
 
-    if len(predictor) == 0 or len(response) == 0:
+    if len(y_pred) == 0 or len(y_true) == 0:
         print('Input cannot be empty')
         return None
        
-    if isinstance(predictor,list):
-        predictor = np.array(predictor)
-    if isinstance(response,list):
-        response = np.array(response)
+    if isinstance(y_pred,list):
+        y_pred = np.array(y_pred)
+    if isinstance(y_true,list):
+        y_true = np.array(y_true)
         
     model = LinearRegression()
-    model.fit(predictor.reshape(-1,1),response)
-    response_predicted =  model.predict(predictor.reshape(-1,1))
-    response_mean = np.mean(response)
-    RSS = sum(((response-response_predicted) ** 2))
-    TSS = sum(((response-response_mean) ** 2))
+    model.fit(y_pred.reshape(-1,1),y_true)
+    y_true_predicted =  model.predict(y_pred.reshape(-1,1))
+    y_true_mean = np.mean(y_true)
+    RSS = sum(((y_true-y_true_predicted) ** 2))
+    TSS = sum(((y_true-y_true_mean) ** 2))
     return round(1 - (RSS/TSS),3)
