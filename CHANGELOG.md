@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.1.1 (2025-01-30)
+
+### Bug Fixes
+
+- Feedback addressed my jay
+  ([`a6999ab`](https://github.com/UBC-MDS/matrics_calculator/commit/a6999ab68d140540e8864fbeda2f3a1c567d172d))
+
+
 ## v3.1.0 (2025-01-30)
 
 ### Features
