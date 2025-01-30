@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.0.0 (2025-01-30)
+
+### Features
+
+- Minor change
+  ([`1f2c68e`](https://github.com/UBC-MDS/matrics_calculator/commit/1f2c68eaefd82be926d2a360a30727ac546754e4))
+
+
 ## v1.0.0 (2025-01-30)
 
 ### Features
