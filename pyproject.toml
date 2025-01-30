@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "matrics_calculator"
-version = "0.0.0"
+version = "1.0.0"
 description = "A package providing functions to calculate key regression metrics: R-squared, Mean Absolute Error (MAE), Mean Squared Error (MSE), and Mean Absolute Percentage Error (MAPE)."
 authors = ["Celine Habashy, Jay Mangat, Yajing Liu, Zhiwei Zhang"]
 license = "MIT"
