@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.2.0 (2025-01-30)
+
+### Features
+
+- Test for pypi
+  ([`cd1293f`](https://github.com/UBC-MDS/matrics_calculator/commit/cd1293f04ce25b3d973dfb39ea72f2c22928b571))
+
+
 ## v3.1.1 (2025-01-30)
 
 ### Bug Fixes
