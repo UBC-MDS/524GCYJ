@@ -12,7 +12,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "{{ cookiecutter.python_version }}"
 
       - name: Check-out repository
         uses: actions/checkout@v3
@@ -24,12 +24,12 @@ jobs:
         run: poetry install
 
       - name: Test with pytest
-        run: poetry run pytest tests/ --cov=matrics_calculator --cov-report=xml
+        run: poetry run pytest tests/ --cov={{ cookiecutter.__package_slug }} --cov-report=xml
 
       - name: Use Codecov to track coverage
         uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
           files: ./coverage.xml   # coverage report
 
       - name: Build documentation
@@ -39,7 +39,6 @@ jobs:
     permissions:
       id-token: write
       contents: write
-      pull-requests: write
     
     # Only run this job if the "ci" job passes
     needs: ci
@@ -55,7 +54,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "{{ cookiecutter.python_version }}"
 
       - name: Check-out repository
         uses: actions/checkout@v3
@@ -66,63 +65,25 @@ jobs:
         id: release
         uses: python-semantic-release/python-semantic-release@v8.3.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        
-      - name: Verify changes after semantic release
-        run: git status
+          github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         if: steps.release.outputs.released == 'true'
         with:
           repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          password: {% raw %}${{ secrets.TEST_PYPI_API_TOKEN }}{% endraw %}
 
       - name: Test install from TestPyPI
         if: steps.release.outputs.released == 'true'
         run: |
-          pip install \
-          --index-url https://test.pypi.org/simple/ \
-          --extra-index-url https://pypi.org/simple \
-          matrics_calculator
-
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        if: steps.release.outputs.released == 'true'
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+            pip install \
+            --index-url https://test.pypi.org/simple/ \
+            --extra-index-url https://pypi.org/simple \
+            {{ cookiecutter.__package_slug }}
 
       - name: Publish package distributions to GitHub Releases
         uses: python-semantic-release/upload-to-gh-release@main
         if: steps.release.outputs.released == 'true'
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Create a release branch instead of pushing directly to main
-      - name: Create and push release branch
-        if: steps.release.outputs.released == 'true'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b release-branch
-          git commit -am "chore: bump version [skip ci]" || echo "No changes to commit"
-          git push origin release-branch || echo "No changes to push"
-
-      # Install GitHub CLI and authenticate before creating PR
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh -y
-
-      - name: Authenticate GitHub CLI
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
-      - name: Create pull request for version update
-        if: steps.release.outputs.released == 'true'
-        run: |
-          gh pr create \
-            --title "Release: New Version" \
-            --body "Automated version bump" \
-            --base main \
-            --head release-branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       
+          github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
