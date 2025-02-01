@@ -25,6 +25,8 @@ This package consists of four functions:
 
 ## Installation
 
+`matrics_calculator` requires Python **3.7 or later**.
+
 ```bash
 $ pip install matrics_calculator
 ```
