@@ -34,24 +34,36 @@ def r2(y_pred, y_true):
     """
     from sklearn.linear_model import LinearRegression
     import numpy as np
-    
+
+    # Ensure inputs are lists
     if not isinstance(y_pred, list) or not isinstance(y_pred, list):
         print('Input must be lists')
         return None
-
+        
+    # Check for empty lists
     if len(y_pred) == 0 or len(y_true) == 0:
         print('Input cannot be empty')
         return None
-       
+        
+     # Convert lists to NumPy arrays if they are still   in list format 
     if isinstance(y_pred,list):
         y_pred = np.array(y_pred)
     if isinstance(y_true,list):
         y_true = np.array(y_true)
         
+    # Create a linear regression model and fit it to the data    
     model = LinearRegression()
     model.fit(y_pred.reshape(-1,1),y_true)
     y_true_predicted =  model.predict(y_pred.reshape(-1,1))
+   
+    # Calculate the mean of y_true
     y_true_mean = np.mean(y_true)
+
+    # Compute Residual Sum of Squares
     RSS = sum(((y_true-y_true_predicted) ** 2))
+    
+    # Compute Total Sum of Squares (TSS)
     TSS = sum(((y_true-y_true_mean) ** 2))
+    
+    # Compute R-squared value and round it to 3 decimal places
     return round(1 - (RSS/TSS),3)
