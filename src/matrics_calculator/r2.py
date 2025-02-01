@@ -21,12 +21,12 @@ def r2(y_pred, y_true):
 
     Examples
     --------
-    data = {
-    'math_test': [80, 85, 90, 95],
-    'science_test': [78, 82, 88, 92],
-    'final_grade': [84, 87, 91, 94],
-    'absences': [3, 0, 1, 30]
-    }
+    >>> data = {
+    >>> 'math_test': [80, 85, 90, 95],
+    >>> 'science_test': [78, 82, 88, 92],
+    >>> 'final_grade': [84, 87, 91, 94],
+    >>> 'absences': [3, 0, 1, 30]
+    >>> }
     >>> r2(data['math_test'],data['final_grade'])
     0.997
     >>> r2(data['math_test'],data['absences'])
