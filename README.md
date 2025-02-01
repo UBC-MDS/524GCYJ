@@ -24,9 +24,22 @@ This package consists of four functions:
 `matrics_calculator` works alongside Python libraries like `scikit-learn` by providing simple implementations of regression metrics. Unlike `scikit-learn`’s full toolkit for modeling and evaluation, this package focuses only on metrics, making it easy to use for quick analysis or custom workflows.
 
 ## Installation
-
+To install the package, navigate to the root directory of the project and run:
 ```bash
 $ pip install matrics_calculator
+```
+
+### Dependencies
+This package requires the following dependencies:
+- [numpy](https://numpy.org/)
+- [pandas](https://pandas.pydata.org/)
+- [scikit-learn](https://scikit-learn.org/)
+- [matplotlib](https://matplotlib.org/)
+- [vega-datasets](https://github.com/altair-viz/vega_datasets)
+
+These dependencies are installed automatically when you install the package using:
+```bash
+pip install matrics_calculator
 ```
 
 ## Usage
