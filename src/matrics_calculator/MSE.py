@@ -22,6 +22,10 @@ def mean_squared_error(y_true, y_pred):
 
     Notes
     -----
+    MSE is defined as:
+        MSE = (1 / n) * sum((y_true - y_pred)²)
+    where `n` is the number of observations.
+    
     This function assumes that the input `y_true` and `y_pred` have the same length.
 
     Examples
