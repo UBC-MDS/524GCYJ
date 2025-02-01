@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.2.1 (2025-02-01)
+
+### Bug Fixes
+
+- Feedback addressed by Yajing
+  ([`9c5d1d2`](https://github.com/UBC-MDS/matrics_calculator/commit/9c5d1d22234f4ca0f3cafa15963ce52502b359c6))
+
+
 ## v3.2.0 (2025-01-30)
 
 ### Features
