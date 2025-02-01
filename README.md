@@ -10,13 +10,13 @@ matrics_calculator provides a lightweight and easy-to-use alternative for calcul
 ## Features
 
 This package consists of four functions:
-- `r_squared`:
+- `r_2`:
     - This function calculates the R-squared of the model, which measures how well the model explains the variation in the data. 
-- `mean_absolute_error`: 
+- `MAE`: 
     - This function finds the average difference between predicted and actual values.
-- `mean_squared_error`:
+- `MSE`:
     - This function calculates the average of the squared differences between predictions and actual values. 
-- `mean_absolute_percentage_error`:
+- `MAPE`:
     - This function shows prediction error as a percentage, making it easy to understand.
 
 ##  matrics_calculator in the Python Ecosystem
