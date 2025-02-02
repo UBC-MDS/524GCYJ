@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v3.2.4 (2025-02-02)
+
+### Bug Fixes
+
+- Feedback addressed by Celine Habashy, addressing seshafi review
+  ([`3a94fee`](https://github.com/UBC-MDS/matrics_calculator/pull/72/commits/3a94feeb344f90477ec866ae1648c30c54693846))
+
 
 ## v3.2.3 (2025-02-02)
 
