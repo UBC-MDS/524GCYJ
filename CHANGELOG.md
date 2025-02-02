@@ -1,6 +1,23 @@
 # CHANGELOG
 
+## c3.3.3 (2025-2-01)
 
+### Fixes
+
+- Feedback #1 addressed by celine
+(['2763bb0'](https://github.com/UBC-MDS/matrics_calculator/commit/2763bb0030fb0c688031f70cf21adb549f92d761))
+
+- Feedback #2 addressed by celine
+(['4607a01'](https://github.com/UBC-MDS/matrics_calculator/commit/4607a012219dbfb674af5687fb03a3d0af2ed710))
+
+- Feedback #3 addressed by celine
+(['ffb3f4f'](https://github.com/UBC-MDS/matrics_calculator/commit/ffb3f4f8bb5583d68c9ee3dd267099078c930374))
+
+- Feedback #4 addressed by celine
+(['4cac074'](https://github.com/UBC-MDS/matrics_calculator/commit/4cac07417cb5f9843271ec8f37beffb138adc8e4))
+
+- Feedback #5 added the readthedocs link in the "about" section of repo
+  
 ## v3.2.2 (2025-02-01)
 
 ### Bug Fixes
