@@ -32,8 +32,11 @@ def mean_absolute_error(y_true, y_pred):
     >>> mean_absolute_error(y_true, y_pred)
     10.0
     """
+    # Ensure the input lists have the same length; otherwise, raise an error
     if len(y_true) != len(y_pred):
         raise ValueError("The lengths of y_true and y_pred must be the same.")
     
+    # Compute the absolute differences between actual and predicted values, sum them, 
+    # and divide by the total number of observations to calculate MAE
     mae = sum(abs(true - pred) for true, pred in zip(y_true, y_pred)) / len(y_true)
     return mae

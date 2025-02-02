@@ -12,11 +12,11 @@ matrics_calculator provides a lightweight and easy-to-use alternative for calcul
 This package consists of four functions:
 - `r2`:
     - This function calculates the R-squared of the model, which measures how well the model explains the variation in the data. 
-- `mean_absolute_error`: 
+- `MAE`: 
     - This function finds the average difference between predicted and actual values.
-- `mean_squared_error`:
-    - This function calculates the average of the squared differences between predictions and actual values. 
-- `mean_absolute_percentage_error`:
+- `MSE`:
+    - This fuction calculates the average of the squared differences between predictions and actual values. 
+- `MAPE`:
     - This function shows prediction error as a percentage, making it easy to understand.
 
 ##  matrics_calculator in the Python Ecosystem
@@ -24,6 +24,9 @@ This package consists of four functions:
 `matrics_calculator` works alongside Python libraries like `scikit-learn` by providing simple implementations of regression metrics. Unlike `scikit-learn`’s full toolkit for modeling and evaluation, this package focuses only on metrics, making it easy to use for quick analysis or custom workflows.
 
 ## Installation
+
+`matrics_calculator` requires Python **3.7 or later**.
+
 To install the package, navigate to the root directory of the project and run:
 ```bash
 $ pip install matrics_calculator

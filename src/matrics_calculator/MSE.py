@@ -22,6 +22,10 @@ def mean_squared_error(y_true, y_pred):
 
     Notes
     -----
+    MSE is defined as:
+        MSE = (1 / n) * sum((y_true - y_pred)²)
+    where `n` is the number of observations.
+    
     This function assumes that the input `y_true` and `y_pred` have the same length.
 
     Examples
@@ -31,9 +35,13 @@ def mean_squared_error(y_true, y_pred):
     >>> mean_squared_error(y_true, y_pred)
     0.375
     """
+
+    # Ensure the input lists have the same length; otherwise, raise an error
     if len(y_true) != len(y_pred):
         raise ValueError("The lengths of y_true and y_pred must be the same.")
-    
+
+    # Compute the squared differences between actual and predicted values, sum them, 
+    # and divide by the total number of observations to calculate MSE
     mse = sum((true - pred) ** 2 for true, pred in zip(y_true, y_pred)) / len(y_true)
     return mse
 
