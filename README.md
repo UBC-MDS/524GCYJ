@@ -10,7 +10,7 @@ matrics_calculator provides a lightweight and easy-to-use alternative for calcul
 ## Features
 
 This package consists of four functions:
-- `r_squared`:
+- `r2`:
     - This function calculates the R-squared of the model, which measures how well the model explains the variation in the data. 
 - `mean_absolute_error`: 
     - This function finds the average difference between predicted and actual values.
