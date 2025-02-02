@@ -25,12 +25,12 @@ This package consists of four functions:
 
 ## Installation
 
-`matrics_calculator` requires Python **3.7 or later**.
-
 To install the package, navigate to the root directory of the project and run:
 ```bash
 $ pip install matrics_calculator
 ```
+
+`matrics_calculator` requires Python version **3.10 or later**.
 
 ### Dependencies
 This package requires the following dependencies:
